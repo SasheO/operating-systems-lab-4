@@ -81,11 +81,40 @@ int main(int argc, char const* argv[])
 						}
 						
 						// ADD THE OTHER OPERATIONS
-						else if(strcmp(token,"add_back") == 0){}
-						else if(strcmp(token,"add_position") == 0){}
-						else if(strcmp(token,"remove_back") == 0){}
-						else if(strcmp(token,"remove_front") == 0){}
-						else if(strcmp(token,"get") == 0){}
+						else if(strcmp(token,"add_back") == 0){
+							token = strtok(NULL, " ");  // get next token (value)
+								val = atoi(token);
+								// Make a Call
+								sprintf(sbuf,"%s%d", ACK, val);
+								list_add_to_back(mylist,val);
+
+						}
+						else if(strcmp(token,"add_position") == 0){
+							token = strtok(NULL, " ");  // get next token (value)
+								idx = atoi(token);
+								token = strtok(NULL, " ");  // get next token (value)
+								val = atoi(token);
+								// Make a Call
+								sprintf(sbuf,"%s%d", ACK, val);
+								list_add_at_index(mylist,val,idx);
+						}
+						else if(strcmp(token,"remove_back") == 0){
+								// Make a Call
+								val = list_remove_from_back(mylist);
+								sprintf(sbuf,"%d", val);
+						}
+						else if(strcmp(token,"remove_front") == 0){
+							// Make a Call
+								val = list_remove_from_front(mylist);
+								sprintf(sbuf,"%d", val);
+						}
+						else if(strcmp(token,"get") == 0){
+							token = strtok(NULL, " ");  // get next token (value)
+								idx = atoi(token);
+								// Make a Call
+								val = list_get_elem_at(mylist,idx);
+								sprintf(sbuf,"%d", val);
+						}
 						
                 // send's messages to client socket 
             send(clientSocket, sbuf, sizeof(sbuf), 0);
