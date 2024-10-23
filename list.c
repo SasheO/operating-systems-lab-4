@@ -14,6 +14,7 @@ list_t *list_alloc() {
   // create a list
   list_t* mylist =  (list_t *) malloc(sizeof(list_t)); 
   mylist->head = NULL;
+  return mylist;
 }
 
 void list_free(list_t *l) {
@@ -61,7 +62,7 @@ char * listToString(list_t *l) {
   }
   else{
     strcat(buf, "NULL");
-    return;
+    return buf;
   }
   
   while (curr != NULL) {
